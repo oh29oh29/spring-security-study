@@ -12,14 +12,14 @@
 
 ### 인증 처리 과정중에 관여하는 클래스
 
-- UsernamePasswordAuthenticationFilter
-  ![Form Login 흐름](images/IMG_UsernamePasswordAuthenticationFilter.png)
+UsernamePasswordAuthenticationFilter  
+![Form Login 흐름](images/IMG_UsernamePasswordAuthenticationFilter.png)
 
-- Authentication
-  ![Authentication](images/IMG_UsernamePasswordAuthenticationToken.png)
+Authentication  
+![Authentication](images/IMG_UsernamePasswordAuthenticationToken.png)
 
-- AuthenticationManager
-  ![Authentication](images/IMG_AuthenticationManager.png)
+AuthenticationManager  
+![Authentication](images/IMG_AuthenticationManager.png)
 
-- AuthenticationProvider
-  ![Authentication](images/IMG_AuthenticationProvider.png)
+AuthenticationProvider  
+![Authentication](images/IMG_AuthenticationProvider.png)
