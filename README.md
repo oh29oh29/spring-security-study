@@ -15,3 +15,6 @@
 
 [Hello Security 04](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-04)  
 스프링 시큐리티 기본 API 및 Filter 이해를 위한 실습 - Remember-Me 인증
+
+[Hello Security 05](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-05)  
+스프링 시큐리티 기본 API 및 Filter 이해를 위한 실습 - 동시 세션 제어
