@@ -18,3 +18,6 @@
 
 [Hello Security 05](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-05)  
 스프링 시큐리티 기본 API 및 Filter 이해를 위한 실습 - 동시 세션 제어
+
+[Hello Security 06](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-06)  
+스프링 시큐리티 기본 API 및 Filter 이해를 위한 실습 - 권한 설정과 표현식
