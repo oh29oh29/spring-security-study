@@ -24,3 +24,6 @@
 
 [Hello Security 07](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-07)  
 스프링 시큐리티 기본 API 및 Filter 이해를 위한 실습 - 예외 처리 및 요청 캐시 필터
+
+[Hello Security 08](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-08)  
+스프링 시큐리티 주요 아키텍처 이해 - 위임 필터 및 필터 빈 초기화
