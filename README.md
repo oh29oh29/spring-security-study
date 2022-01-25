@@ -30,3 +30,6 @@
 
 [Hello Security 09](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-09)  
 스프링 시큐리티 주요 아키텍처 이해 - 필터 초기화와 다중 보안 설정
+
+[Hello Security 10](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-10)  
+스프링 시큐리티 주요 아키텍처 이해 - 인증 개념 이해 (Authentication)
