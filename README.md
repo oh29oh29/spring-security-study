@@ -33,3 +33,6 @@
 
 [Hello Security 10](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-10)  
 스프링 시큐리티 주요 아키텍처 이해 - 인증 개념 이해 (Authentication)
+
+[Hello Security 11](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-11)  
+스프링 시큐리티 주요 아키텍처 이해 - 인증 저장소 (SecurityContextHolder, SecurityContext)
