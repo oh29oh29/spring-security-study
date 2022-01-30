@@ -39,3 +39,6 @@
 
 [Hello Security 12](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-12)  
 스프링 시큐리티 주요 아키텍처 이해 - 인증 저장소 필터 (SecurityContextPersistenceFilter)
+
+[Hello Security 13](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-13)  
+스프링 시큐리티 주요 아키텍처 이해 - 인증 흐름 이해
