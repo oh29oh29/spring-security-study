@@ -42,3 +42,6 @@
 
 [Hello Security 13](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-13)  
 스프링 시큐리티 주요 아키텍처 이해 - 인증 흐름 이해
+
+[Hello Security 14](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-14)  
+스프링 시큐리티 주요 아키텍처 이해 - 인가 개념 및 필터 이해 (Authorization, FilterSecurityInterceptor)
