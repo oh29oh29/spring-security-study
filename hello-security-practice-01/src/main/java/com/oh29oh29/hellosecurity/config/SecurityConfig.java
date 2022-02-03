@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/user").permitAll()
+                .antMatchers("/", "/h2-console/**", "/users").permitAll()
                 .antMatchers("/mypage").hasRole("USER")
                 .antMatchers("/messages").hasRole("MANAGER")
                 .antMatchers("/config").hasRole("ADMIN")
@@ -46,5 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .formLogin();
+
+        // h2-console 접속을 위한 설정
+        http.headers().frameOptions().sameOrigin();
+        http.csrf().disable();
+
     }
 }
