@@ -17,7 +17,7 @@ public class Account {
     private String password;
     private String email;
     private String age;
-    private String rule;
+    private String role;
 
     public Long getId() {
         return id;
@@ -59,12 +59,12 @@ public class Account {
         this.age = age;
     }
 
-    public String getRule() {
-        return rule;
+    public String getRole() {
+        return role;
     }
 
-    public void setRule(String rule) {
-        this.rule = rule;
+    public void setRole(String rule) {
+        this.role = rule;
     }
 
     @Override

@@ -6,7 +6,7 @@ public class AccountDto {
     private String password;
     private String email;
     private String age;
-    private String rule;
+    private String role;
 
     public String getUsername() {
         return username;
@@ -40,11 +40,11 @@ public class AccountDto {
         this.age = age;
     }
 
-    public String getRule() {
-        return rule;
+    public String getRole() {
+        return role;
     }
 
-    public void setRule(String rule) {
-        this.rule = rule;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
