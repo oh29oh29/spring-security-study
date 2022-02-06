@@ -1,4 +1,4 @@
-package com.oh29oh29.hellosecurity.service;
+package com.oh29oh29.hellosecurity.security.service;
 
 import com.oh29oh29.hellosecurity.domain.Account;
 import com.oh29oh29.hellosecurity.repository.UserRepository;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -32,8 +32,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         final List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(account.getRole()));
 
-        final AccountContext accountContext = new AccountContext(account, roles);
-
-        return accountContext;
+        return new AccountContext(account, roles);
     }
 }

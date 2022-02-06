@@ -1,4 +1,4 @@
-package com.oh29oh29.hellosecurity.service;
+package com.oh29oh29.hellosecurity.security.service;
 
 import com.oh29oh29.hellosecurity.domain.Account;
 import org.springframework.security.core.GrantedAuthority;
