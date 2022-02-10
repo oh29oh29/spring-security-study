@@ -1,5 +1,6 @@
 package com.oh29oh29.hellosecurity.security.config;
 
+import com.oh29oh29.hellosecurity.security.common.FormAuthenticationDetailsSource;
 import com.oh29oh29.hellosecurity.security.provider.CustomAuthenticationProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -19,9 +20,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
+    private final FormAuthenticationDetailsSource authenticationDetailsSource;
 
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    public SecurityConfig(UserDetailsService userDetailsService, FormAuthenticationDetailsSource authenticationDetailsSource) {
         this.userDetailsService = userDetailsService;
+        this.authenticationDetailsSource = authenticationDetailsSource;
     }
 
     @Override
@@ -49,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .loginProcessingUrl("/login_proc")
                 .defaultSuccessUrl("/")
+                .authenticationDetailsSource(authenticationDetailsSource)
                 .permitAll();
 
         // h2-console 접속을 위한 설정
