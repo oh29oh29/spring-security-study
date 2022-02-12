@@ -1,6 +1,7 @@
 package com.oh29oh29.hellosecurity.security.config;
 
 import com.oh29oh29.hellosecurity.security.common.FormAuthenticationDetailsSource;
+import com.oh29oh29.hellosecurity.security.handler.CustomAuthenticationFailureHandler;
 import com.oh29oh29.hellosecurity.security.handler.CustomAuthenticationSuccessHandler;
 import com.oh29oh29.hellosecurity.security.provider.CustomAuthenticationProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -23,11 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final FormAuthenticationDetailsSource authenticationDetailsSource;
     private final CustomAuthenticationSuccessHandler authenticationSuccessHandler;
+    private final CustomAuthenticationFailureHandler authenticationFailureHandler;
 
-    public SecurityConfig(UserDetailsService userDetailsService, FormAuthenticationDetailsSource authenticationDetailsSource, CustomAuthenticationSuccessHandler authenticationSuccessHandler) {
+    public SecurityConfig(UserDetailsService userDetailsService, FormAuthenticationDetailsSource authenticationDetailsSource, CustomAuthenticationSuccessHandler authenticationSuccessHandler, CustomAuthenticationFailureHandler authenticationFailureHandler) {
         this.userDetailsService = userDetailsService;
         this.authenticationDetailsSource = authenticationDetailsSource;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.authenticationFailureHandler = authenticationFailureHandler;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/h2-console/**", "/users").permitAll()
+                .antMatchers("/", "/h2-console/**", "/users", "/login*").permitAll()
                 .antMatchers("/mypage").hasRole("USER")
                 .antMatchers("/messages").hasRole("MANAGER")
                 .antMatchers("/config").hasRole("ADMIN")
@@ -57,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .authenticationDetailsSource(authenticationDetailsSource)
                 .successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationFailureHandler)
                 .permitAll();
 
         // h2-console 접속을 위한 설정
