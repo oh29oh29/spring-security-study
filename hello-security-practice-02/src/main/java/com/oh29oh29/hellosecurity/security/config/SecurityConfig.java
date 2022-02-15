@@ -1,7 +1,6 @@
 package com.oh29oh29.hellosecurity.security.config;
 
 import com.oh29oh29.hellosecurity.security.common.FormAuthenticationDetailsSource;
-import com.oh29oh29.hellosecurity.security.filter.AjaxAuthenticationFilter;
 import com.oh29oh29.hellosecurity.security.handler.CustomAccessDeniedHandler;
 import com.oh29oh29.hellosecurity.security.handler.CustomAuthenticationFailureHandler;
 import com.oh29oh29.hellosecurity.security.handler.CustomAuthenticationSuccessHandler;
@@ -9,7 +8,6 @@ import com.oh29oh29.hellosecurity.security.provider.CustomAuthenticationProvider
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,7 +18,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -72,18 +69,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler());
 
-        http
-                .addFilterBefore(ajaxAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // h2-console 접속을 위한 설정
         http.headers().frameOptions().sameOrigin();
-        http.csrf().disable();
-
-    }
-
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
     }
 
     @Bean
@@ -101,10 +89,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomAccessDeniedHandler("/denied");
     }
 
-    @Bean
-    public AjaxAuthenticationFilter ajaxAuthenticationFilter() throws Exception {
-        final AjaxAuthenticationFilter ajaxAuthenticationFilter = new AjaxAuthenticationFilter("/api/login");
-        ajaxAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
-        return ajaxAuthenticationFilter;
-    }
 }
