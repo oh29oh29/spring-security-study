@@ -47,6 +47,7 @@ public class AjaxSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatcher("/api/**")
                 .authorizeRequests()
                 .antMatchers("/api/messages").hasRole("MANAGER")
+                .antMatchers("/api/login").permitAll()
                 .anyRequest().authenticated();
 
         http
@@ -55,8 +56,6 @@ public class AjaxSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(ajaxAccessDeniedHandler());
 
         ajaxConfigurer(http);
-
-        http.csrf().disable();
     }
 
     private void ajaxConfigurer(HttpSecurity http) throws Exception {
