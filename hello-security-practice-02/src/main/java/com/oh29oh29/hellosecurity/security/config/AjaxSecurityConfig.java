@@ -1,6 +1,8 @@
 package com.oh29oh29.hellosecurity.security.config;
 
+import com.oh29oh29.hellosecurity.security.common.AjaxLoginAuthenticationEntryPoint;
 import com.oh29oh29.hellosecurity.security.filter.AjaxAuthenticationFilter;
+import com.oh29oh29.hellosecurity.security.handler.AjaxAccessDeniedHandler;
 import com.oh29oh29.hellosecurity.security.handler.AjaxAuthenticationFailureHandler;
 import com.oh29oh29.hellosecurity.security.handler.AjaxAuthenticationSuccessHandler;
 import com.oh29oh29.hellosecurity.security.provider.AjaxAuthenticationProvider;
@@ -14,6 +16,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -45,12 +48,23 @@ public class AjaxSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .antMatcher("/api/**")
                 .authorizeRequests()
+                .antMatchers("/api/messages").hasRole("MANAGER")
                 .anyRequest().authenticated();
 
         http
                 .addFilterBefore(ajaxAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
+        http
+                .exceptionHandling()
+                .authenticationEntryPoint(new AjaxLoginAuthenticationEntryPoint())
+                .accessDeniedHandler(ajaxAccessDeniedHandler());
+
         http.csrf().disable();
+    }
+
+    @Bean
+    public AccessDeniedHandler ajaxAccessDeniedHandler() {
+        return new AjaxAccessDeniedHandler();
     }
 
     @Bean
