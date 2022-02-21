@@ -48,3 +48,9 @@
 
 [Hello Security Practice 01](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-practice-01)  
 실전 프로젝트 - 인증 프로세스 Form 인증 구현
+
+[Hello Security Practice 02](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-practice-02)  
+실전 프로젝트 - 인증 프로세스 Ajax 인증 구현
+
+[Hello Security Practice 03](https://github.com/oh29oh29/spring-security-study/tree/master/hello-security-practice-03)  
+실전 프로젝트 - 인가 프로세스 DB 연동 웹 계층 구현
