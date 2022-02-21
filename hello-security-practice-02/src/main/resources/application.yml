@@ -1,8 +1,8 @@
 spring:
   application:
-    name: practice01
+    name: practice02
   datasource:
-    url: jdbc:h2:mem:practice01
+    url: jdbc:h2:mem:practice02
     driverClassName: org.h2.Driver
     username: sa
     password:
