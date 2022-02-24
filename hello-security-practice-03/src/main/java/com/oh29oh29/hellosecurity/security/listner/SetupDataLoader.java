@@ -6,6 +6,7 @@ import com.oh29oh29.hellosecurity.domain.Role;
 import com.oh29oh29.hellosecurity.repository.ResourcesRepository;
 import com.oh29oh29.hellosecurity.repository.RoleRepository;
 import com.oh29oh29.hellosecurity.repository.UserRepository;
+import com.oh29oh29.hellosecurity.security.metadatasource.UrlFilterInvocationSecurityMetadataSource;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,12 +26,14 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     private final RoleRepository roleRepository;
     private final ResourcesRepository resourcesRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UrlFilterInvocationSecurityMetadataSource urlFilterInvocationSecurityMetadataSource;
 
-    public SetupDataLoader(UserRepository userRepository, RoleRepository roleRepository, ResourcesRepository resourcesRepository, PasswordEncoder passwordEncoder) {
+    public SetupDataLoader(UserRepository userRepository, RoleRepository roleRepository, ResourcesRepository resourcesRepository, PasswordEncoder passwordEncoder, UrlFilterInvocationSecurityMetadataSource urlFilterInvocationSecurityMetadataSource) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.resourcesRepository = resourcesRepository;
         this.passwordEncoder = passwordEncoder;
+        this.urlFilterInvocationSecurityMetadataSource = urlFilterInvocationSecurityMetadataSource;
     }
 
     private static final AtomicInteger count = new AtomicInteger(0);
@@ -43,18 +46,23 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
             return;
         }
 
-        setupSecurityResources();
+        try {
+            setupSecurityResources();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         alreadySetup = true;
     }
 
 
 
-    private void setupSecurityResources() {
+    private void setupSecurityResources() throws Exception {
         Set<Role> roles = new HashSet<>();
         Role adminRole = createRoleIfNotFound("ROLE_ADMIN", "관리자");
         roles.add(adminRole);
         createResourceIfNotFound("/admin/**", "", roles, "url");
+        urlFilterInvocationSecurityMetadataSource.reload();
         Account account = createUserIfNotFound("admin", "pass", "admin@gmail.com", 10,  roles);
         
 //        Set<Role> roles1 = new HashSet<>();
@@ -109,6 +117,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         if (resources == null) {
             resources = new Resources();
             resources.setResourceName(resourceName);
+            resources.setResourceType(resourceType);
             resources.setRoleSet(roleSet);
             resources.setHttpMethod(httpMethod);
             resources.setOrderNum(count.incrementAndGet());
